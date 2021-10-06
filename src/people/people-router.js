@@ -60,6 +60,20 @@ peopleRouter
       })
   })
 
+  peopleRouter
+  .route('/count')
+  .get((req, res, next) => {
+    const knexInstance = req.app.get('db')
+    PeopleService.getAllPeople(knexInstance)
+      .then((people) => {
+        res.json(people.length)
+      })
+      .catch((err) => {
+        console.log({ err })
+        next()
+      })
+  })
+
 peopleRouter
   .route('/:person_id')
   .all((req, res, next) => {
