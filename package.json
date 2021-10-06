@@ -5,7 +5,11 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon src/server.js",
+    "dev": "nodemon src/server.js",
+    "start": "node src/server.js",
+    "migrate": "postgrator --config postgrator-config.js",
+    "migrate:production": "heroku run npm run migrate",
+    "predeploy": "npm audit",
     "deploy": "git push heroku master"
   },
   "keywords": [],
@@ -20,6 +24,7 @@
     "mysql": "^2.18.1",
     "nodemon": "^2.0.13",
     "pg": "^8.7.1",
+    "postgrator": "^4.2.0",
     "xss": "^1.0.9"
   }
 }
